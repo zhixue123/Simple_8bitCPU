@@ -29,20 +29,44 @@ output reg [7:0] alu_out;//运算结果的输出
 		end else begin
 			if (en) begin
 				case(operation)//根据具体操作命令进行操作
-	            MOVAC  : begin r<=ac;alu_out<=ac;end
-	            MOVR   : alu_out<=ac;
-	            ADD    : alu_out<=ac+r;
-	            SUB    : alu_out<=ac-r;
-	            INAC   : alu_out<=ac+8'b0000_0001;
-	            CLAC   : alu_out<=8'b0000_0000;
-	            AND    : alu_out<=ac&r;
-	            OR     : alu_out<=ac|r;
-	            XOR    : alu_out<=ac^r;
-	            NOT    : alu_out<=~ac;
-					default: alu_out<=8'b0000_0000;
+                  MOVAC:begin
+				    r<=ac;
+					alu_out<=ac;
+				  end
+                  MOVR:begin
+				    alu_out<=ac;
+				  end
+                  ADD:begin
+		            alu_out<=ac+r;
+				  end
+                  SUB:begin
+					alu_out<=ac-r;
+				  end
+                  INAC:begin
+					alu_out<=ac+1;
+				  end
+				  CLAC:begin
+					alu_out<=0;
+				  end
+				  AND:begin
+				    alu_out<=ac&r;
+				  end
+				  OR:begin
+				    alu_out<=ac|r;
+				  end
+				  XOR:begin
+				    alu_out<=~ac^r;
+				  end
+				  NOT:begin
+				    alu_out<=~ac;
+				  end
+				  default:begin
+				    alu_out<=0;
+				  end
 				endcase  
 			end
 		end
 	end
  
 endmodule
+

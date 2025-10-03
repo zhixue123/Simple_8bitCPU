@@ -11,15 +11,15 @@ output reg [7:0] ac;//保存数据AC的输出
 		if(!rst)begin
 	   	ac<=8'b0000_0000;
 		end else begin
-		   if(en==2'b10)begin//根据alu_en进行对应操作
-		   	ac<=file_in;
-			end else if(en==2'b01)begin
-			   ac<=alu_in;
-		   end else begin
-			   ac<=ac; 
-			end
+           if(en==1)begin
+		      ac<=alu_in;
+		   end
+		   else if(en==2)begin
+		      ac<=file_in;
+		   end
 		end
 	end
 	
 	
 endmodule
+
